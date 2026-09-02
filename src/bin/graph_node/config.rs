@@ -735,8 +735,8 @@ mod tests {
     }
     #[test]
     fn read_auth_token_error_names_missing_file() {
-        let path = std::env::temp_dir().join("hydradb-missing-auth-token-test");
-        let _ = std::fs::remove_file(&path);
+        let directory = tempfile::tempdir().unwrap();
+        let path = directory.path().join("missing-auth-token");
 
         let mut values =
             BTreeMap::from([("GRAPH_ALLOW_PLAINTEXT".to_string(), "true".to_string())]);
